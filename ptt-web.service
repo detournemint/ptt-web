@@ -1,0 +1,13 @@
+[Unit]
+Description=ptt-web - browser PTT + audio for FT-991A (localhost only)
+After=rigctld.service pipewire-pulse.service
+
+[Service]
+ExecStart=/usr/bin/python3 %h/ptt-web/server.py
+Restart=on-failure
+RestartSec=2
+# on stop/restart the server unkeys the radio during cleanup
+TimeoutStopSec=8
+
+[Install]
+WantedBy=default.target
